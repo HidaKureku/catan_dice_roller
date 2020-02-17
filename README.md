@@ -2,11 +2,7 @@
 Catan Dice Roller Device Software
 
 
-RECOMMENDED INSTALLATION
 
-Download .img file
-Use Etcher to burn .img to SD card
-Insert SD card into Pi and boot
 
 MANUAL INSTALLATION
 
