@@ -12,10 +12,9 @@ os.system("sudo chmod +x /etc/rc.local")
 
 #Install Libraries
 os.system("sudo apt-get update -y")
-os.system("y")
 os.system("sudo apt-get upgrade -y")
 os.system("sudo apt-get install python-dev -y")
-os.system("sudo apt-get install python-dev -y")
+os.system("sudo apt-get install python3-dev -y")
 os.system("sudo apt-get install RPi.GPIO -y")
 
 #Reboot
