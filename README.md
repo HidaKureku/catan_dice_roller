@@ -13,6 +13,6 @@ Connect to the Internet and install git
 enter
   sudo git clone https://github.com/HidaKureku/catan_dice_roller.git
 enter
-  cd catan_dice_roller/install
+  cd /home/pi/catan_dice_roller
 enter
   sudo python3 install.py
