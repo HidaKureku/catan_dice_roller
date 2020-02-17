@@ -95,7 +95,6 @@ def save_button(channel):
     total_rolls.clear()
     total_rolls.append(0)
     roll_logs.append(1)
-    print("Roll Log Saved")  #for testing
     time.sleep(3)
     #Blank Displays
     for x in range(0,4):
@@ -125,7 +124,6 @@ def reset_button(channel):
     os.mkdir(r"/home/pi/catan_dice_roller/roll_logs")
     roll_logs.clear()
     roll_logs.append(1)
-    print("Values Reset")  #for testing
     time.sleep(3)
     #Blank Displays
     for x in range(0,4):
@@ -145,9 +143,6 @@ def roll_button(channel):
     d1_rolls.append(dice1)
     d2_rolls.append(dice2)
     total_rolls.append(total)
-    #for testing
-    print("Dice 1: " + str(dice1) + "   Dice 2: " + str(dice2) + "   Total Roll: " + str(total))
-    print("Roll Nummber: " + str(roll))
     #Blank Displays
     for x in range(0,4):
         GPIO.output(decoder1[x],blank[x])
@@ -175,8 +170,6 @@ def roll_button(channel):
 #Turn Button Function
 def turn_button(channel):
     turn_dice = randrange(1,7)
-    #fr testing
-    print("Turn Roll: " + str(turn_dice))
     #Blank Displays
     for x in range(0,4):
         GPIO.output(decoder1[x],blank[x])
@@ -225,7 +218,3 @@ GPIO.add_event_detect(8,GPIO.RISING,callback=save_button)
 GPIO.add_event_detect(10,GPIO.RISING,callback=reset_button)
 GPIO.add_event_detect(19,GPIO.RISING,callback=roll_button)
 GPIO.add_event_detect(21,GPIO.RISING,callback=turn_button)
-
-#TESTING
-message = input("Enter to Quit\n\n")
-GPIO.cleanup()
