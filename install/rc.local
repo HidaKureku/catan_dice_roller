@@ -16,5 +16,5 @@ _IP=$(hostname -I) || true
 if [ "$_IP" ]; then
   printf "My IP address is %s\n" "$_IP"
 fi
-sudo python3 /home/pi/catan_dice_roller/shutdown.py &
+sudo python3 /home/pi/catan_dice_roller/sleep.py &
 exit 0
