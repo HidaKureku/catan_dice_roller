@@ -132,7 +132,6 @@ def reset_button(channel):
         GPIO.output(decoder3[x],blank[x])
         GPIO.output(decoder4[x],blank[x])
     time.sleep(1)
-    break
 
 #Roll Button Function
 def roll_button(channel):
@@ -183,6 +182,18 @@ def turn_button(channel):
         GPIO.output(decoder4[x],num[turn_dice][x])
     time.sleep(3)
 
+#Sleep Button Function
+def sleep(channel):
+    GPIO.output(7,GPIO.HIGH)
+    for x in range(0,4):
+        GPIO.output(decoder1[x],num[8][x])
+        GPIO.output(decoder2[x],num[8][x])
+        GPIO.output(decoder3[x],num[8][x])
+        GPIO.output(decoder4[x],num[8][x])
+    time.sleep(5)
+    GPIO.output(7,GPIO.LOW)
+    os.system("sudo shutdown -h now")
+
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
@@ -213,12 +224,16 @@ GPIO.setup(8,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) #save
 GPIO.setup(10,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) #reset
 GPIO.setup(19,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) #roll
 GPIO.setup(21,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) #turn
+GPIO.setup(5,GPIO.IN,pull_up_down=GPIO.PUD_UP) #sleep button
 
 #Butten Event Detection
 GPIO.add_event_detect(8,GPIO.RISING,callback=save_button)
 GPIO.add_event_detect(10,GPIO.RISING,callback=reset_button)
 GPIO.add_event_detect(19,GPIO.RISING,callback=roll_button)
 GPIO.add_event_detect(21,GPIO.RISING,callback=turn_button)
+GPIO.add_event_detect(5,GPIO.FALLING,callback=sleep)
 
-while 1:
+while True:
     time.sleep(1)
+    
+GPIO.cleanup()
