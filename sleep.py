@@ -1,6 +1,7 @@
 #Sleep Button
 
 import RPi.GPIO as GPIO
+import time
 import os
 
 GPIO.setmode(GPIO.BOARD)
@@ -17,7 +18,7 @@ def sleep(channel):
   GPIO.output(7,GPIO.LOW)
   os.system("sudo shutdown -h now")
   
-  GPIO.add_event_detect(5,GPIO.FALLING,callback=sleep)
+GPIO.add_event_detect(5,GPIO.FALLING,callback=sleep)
   
- while 1:
+while 1:
   time.sleep(1)
