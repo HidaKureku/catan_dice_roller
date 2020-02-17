@@ -1,5 +1,5 @@
 #Catan Dice Roller v1
-#Feb 16, 2020
+#Feb 17, 2020
 
 import RPi.GPIO as GPIO
 import time
@@ -132,6 +132,7 @@ def reset_button(channel):
         GPIO.output(decoder3[x],blank[x])
         GPIO.output(decoder4[x],blank[x])
     time.sleep(1)
+    break
 
 #Roll Button Function
 def roll_button(channel):
@@ -218,3 +219,6 @@ GPIO.add_event_detect(8,GPIO.RISING,callback=save_button)
 GPIO.add_event_detect(10,GPIO.RISING,callback=reset_button)
 GPIO.add_event_detect(19,GPIO.RISING,callback=roll_button)
 GPIO.add_event_detect(21,GPIO.RISING,callback=turn_button)
+
+while 1:
+    time.sleep(1)
