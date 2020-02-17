@@ -8,6 +8,7 @@ os.system("sudo mkdir /home/pi/catan_dice_roller/roll_logs")
 #Replace rc.local
 os.system("sudo rm -r /etc/rc.local")
 os.system("sudo cp /home/pi/catan_dice_roller/install/rc.local /etc")
+os.system("sudo chmod +x /etc/rc.local")
 
 #Install Libraries
 os.system("sudo apt-get update -y")
