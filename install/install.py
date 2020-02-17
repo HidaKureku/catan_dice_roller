@@ -16,3 +16,6 @@ os.system("sudo apt-get upgrade -y")
 os.system("sudo apt-get install python-dev -y")
 os.system("sudo apt-get install python-dev -y")
 os.system("sudo apt-get install RPi.GPIO -y")
+
+#Reboot
+os.system("sudo reboot")
