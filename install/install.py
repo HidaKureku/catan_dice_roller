@@ -9,6 +9,8 @@ os.system("sudo mkdir /home/pi/catan_dice_roller/roll_logs")
 os.system("sudo rm -r /etc/rc.local")
 os.system("sudo cp /home/pi/catan_dice_roller/install/rc.local /etc")
 os.system("sudo chmod +x /etc/rc.local")
+os.system("sudo chmod +x /home/pi/catan_dice_roller/catan_dice_roller.py")
+os.system("sudo chmod +x /home/pi/catan_dice_roller/startup.py")
 
 #Install Libraries
 os.system("sudo apt-get update -y")
