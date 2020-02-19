@@ -2,6 +2,8 @@ import os
 import RPi.GPIO as GPIO
 import time
 
+GPIO.setmode(GPIO.BOARD)
+
 num = [GPIO.LOW,GPIO.LOW,GPIO.LOW,GPIO.HIGH]
 
 decoder1 = [40,38,37,36]
