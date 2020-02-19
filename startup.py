@@ -4,6 +4,11 @@ import time
 
 num = [GPIO.LOW,GPIO.LOW,GPIO.LOW,GPIO.HIGH]
 
+decoder1 = [40,38,37,36]
+decoder2 = [35,33,32,31]
+decoder3 = [29,22,18,16]
+decoder4 = [15,13,12,11]
+
 for x in range(0,4):
     GPIO.setup(decoder1[x],GPIO.OUT)
     GPIO.output(decoder1[x],GPIO.LOW)
@@ -46,4 +51,5 @@ for x in range(0,4):
 time.sleep(1)
 
 os.system("sudo python3 /home/pi/catan_dice_roller/catan_dice_roller.py")
+
 GPIO.cleanup()
