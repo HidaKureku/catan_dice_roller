@@ -7,7 +7,6 @@ from random import randrange
 import os
 import shutil
 from decimal import *
-import pyudev
 
 #Global Variables
 roll_count = [0]
