@@ -2,6 +2,8 @@ import os
 import RPi.GPIO as GPIO
 import time
 
+GPIO.setmode(GPIO.BOARD)
+
 eight = [GPIO.LOW,GPIO.LOW,GPIO.LOW,GPIO.HIGH]
 zero = [GPIO.LOW,GPIO.LOW,GPIO.LOW,GPIO.LOW]
 
