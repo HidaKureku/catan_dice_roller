@@ -1,5 +1,5 @@
 #Catan Dice Roller v1
-#Feb 17, 2020
+#Feb 18, 2020
 
 import RPi.GPIO as GPIO
 import time
@@ -7,6 +7,7 @@ from random import randrange
 import os
 import shutil
 from decimal import *
+import pyudev
 
 #Global Variables
 roll_count = [0]
@@ -119,6 +120,10 @@ def reset_button(channel):
         GPIO.output(decoder2[x],num[0][x])
         GPIO.output(decoder3[x],num[0][x])
         GPIO.output(decoder4[x],num[0][x])
+    #Mount USB Drive
+    os.system("sudo mount /dev/sda1 /media/usb")
+    #Copy Roll Log folder to USB
+    os.system("sudo cp /home/pi/catan_dice_roller/roll_logs /media/usb")
     #Reset Roll Logs
     shutil.rmtree(r"/home/pi/catan_dice_roller/roll_logs")
     os.mkdir(r"/home/pi/catan_dice_roller/roll_logs")
@@ -224,7 +229,7 @@ GPIO.setup(8,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) #save
 GPIO.setup(10,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) #reset
 GPIO.setup(19,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) #roll
 GPIO.setup(21,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) #turn
-GPIO.setup(5,GPIO.IN,pull_up_down=GPIO.PUD_UP) #sleep button
+GPIO.setup(5,GPIO.IN,pull_up_down=GPIO.PUD_UP) #sleep
 
 #Butten Event Detection
 GPIO.add_event_detect(8,GPIO.RISING,callback=save_button)
