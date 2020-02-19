@@ -16,6 +16,7 @@ os.system("sudo apt-get upgrade -y")
 os.system("sudo apt-get install python-dev -y")
 os.system("sudo apt-get install python3-dev -y")
 os.system("sudo apt-get install RPi.GPIO -y")
+os.system("sudo apt-get install usbmount -y")
 
 #Reboot
 os.system("sudo reboot")
