@@ -1,5 +1,5 @@
 #Catan Dice Roller v1
-#Feb 18, 2020
+#Mar 15, 2020
 
 import RPi.GPIO as GPIO
 import time
@@ -7,6 +7,7 @@ from random import randrange
 import os
 import shutil
 from decimal import *
+import pyudev
 
 #Global Variables
 roll_count = [0]
@@ -16,10 +17,10 @@ total_rolls = [0]
 roll_logs = [0]
 
 #Maps
-decoder1 = [40,38,37,36]
-decoder2 = [35,33,32,31]
-decoder3 = [29,22,18,16]
-decoder4 = [15,13,12,11]
+decoder1 = [16,8,10,12]
+decoder2 = [36,18,24,32]
+decoder3 = [19,29,23,21]
+decoder4 = [31,37,35,33]
 blank = [GPIO.LOW,GPIO.HIGH,GPIO.LOW,GPIO.HIGH]
 num = {0: [GPIO.LOW,GPIO.LOW,GPIO.LOW,GPIO.LOW],
        1: [GPIO.HIGH,GPIO.LOW,GPIO.LOW,GPIO.LOW],
@@ -188,21 +189,21 @@ def turn_button(channel):
 
 #Sleep Button Function
 def sleep(channel):
-    GPIO.output(7,GPIO.HIGH)
+    GPIO.output(38,GPIO.HIGH)
     for x in range(0,4):
         GPIO.output(decoder1[x],num[8][x])
         GPIO.output(decoder2[x],num[8][x])
         GPIO.output(decoder3[x],num[8][x])
         GPIO.output(decoder4[x],num[8][x])
     time.sleep(5)
-    GPIO.output(7,GPIO.LOW)
+    GPIO.output(38,GPIO.LOW)
     os.system("sudo shutdown -h now")
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
-GPIO.setup(7,GPIO.OUT) #Blanking
-GPIO.output(7,GPIO.HIGH)
+GPIO.setup(38,GPIO.OUT) #Blanking
+GPIO.output(38,GPIO.HIGH)
 
 #Set up decoders
 for x in range(0,4):
@@ -224,11 +225,11 @@ for x in range(0,4):
 time.sleep(3)  
 
 #Set up Buttons
-GPIO.setup(8,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) #save
-GPIO.setup(10,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) #reset
-GPIO.setup(19,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) #roll
-GPIO.setup(21,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) #turn
-GPIO.setup(5,GPIO.IN,pull_up_down=GPIO.PUD_UP) #sleep
+GPIO.setup(22,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) #save
+GPIO.setup(11,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) #reset
+GPIO.setup(15,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) #roll
+GPIO.setup(13,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) #turn
+GPIO.setup(40,GPIO.IN,pull_up_down=GPIO.PUD_UP) #sleep
 
 #Butten Event Detection
 GPIO.add_event_detect(8,GPIO.RISING,callback=save_button)
